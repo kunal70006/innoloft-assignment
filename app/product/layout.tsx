@@ -73,7 +73,7 @@ export default function ProductRootLayout({
           </div>
         </div>
       </nav>
-      <main className="px-3 pt-5 xl:px-60">{children}</main>
+      <main className="px-3 pt-5 xl:px-60 bg-slate-100">{children}</main>
     </>
   );
 }
