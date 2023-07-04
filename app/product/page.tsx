@@ -9,6 +9,10 @@ const ProductPage = async () => {
   const data: ProductData = await fetcher(process.env.PRODUCT_DETAILS!);
   if (!data) return <div className="">Something went wrong.</div>;
 
+  const hasUserSelection: boolean = JSON.parse(
+    process.env.hasUserSection!.toLocaleLowerCase()
+  );
+
   return (
     <div className="flex">
       <div className="hidden lg:block w-full">
@@ -68,7 +72,11 @@ const ProductPage = async () => {
           </button>
         </div>
         <div className="flex flex-col md:flex-row mt-5 rounded-md bg-white">
-          <div className="flex flex-col border xl:w-[65%] md:w-1/2 pb-8">
+          <div
+            className={`flex flex-col border pb-8 ${
+              !hasUserSelection ? "w-full" : "xl:w-[65%] md:w-1/2"
+            }`}
+          >
             <div className="relative h-96 w-96 xl:h-[300px] xl:w-[600px]">
               <Image
                 src={data.picture}
@@ -97,51 +105,54 @@ const ProductPage = async () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col p-5 flex-grow border border-l-0">
-            <h1 className="font-medium text-lg text-slate-800">Offered By</h1>
-            <div className="relative h-12 w-32">
-              <Image
-                src={data.company.logo}
-                fill
-                alt="company logo"
-                className="object-contain"
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex relative h-16 w-16">
+          {hasUserSelection && (
+            <div className="flex flex-col p-5 flex-grow border border-l-0">
+              <h1 className="font-medium text-lg text-slate-800">Offered By</h1>
+              <div className="relative h-12 w-32">
                 <Image
-                  src={data.user.profilePicture}
-                  alt="profile picture"
+                  src={data.company.logo}
                   fill
-                  className="object-contain rounded-full mr-4"
+                  alt="company logo"
+                  className="object-contain"
                 />
               </div>
-              <div className="flex flex-col text-xs gap-1 text-slate-600">
-                <p>{`${data.user.firstName} ${data.user.lastName}`}</p>
-                <p>{data.user.position}</p>
+              <div className="flex items-center gap-2">
+                <div className="flex relative h-16 w-16">
+                  <Image
+                    src={data.user.profilePicture}
+                    alt="profile picture"
+                    fill
+                    className="object-contain rounded-full mr-4"
+                  />
+                </div>
+                <div className="flex flex-col text-xs gap-1 text-slate-600">
+                  <p>{`${data.user.firstName} ${data.user.lastName}`}</p>
+                  <p>{data.user.position}</p>
+                </div>
               </div>
-            </div>
-            <div className="flex gap-2 my-5 items-start">
-              <Image
-                src="/location.svg"
-                alt="location pin"
-                height={16}
-                width={16}
+              <div className="flex gap-2 my-5 items-start">
+                <Image
+                  src="/location.svg"
+                  alt="location pin"
+                  height={16}
+                  width={16}
+                />
+                <div className="flex flex-col gap-1 text-sm text-slate-600">
+                  <p className="">{`${data.company.address.street} ${data.company.address.house},`}</p>
+                  <p>{`${data.company.address.zipCode} ${data.company.address.city.name}, ${data.company.address.country.name}`}</p>
+                </div>
+              </div>
+              <Map
+                center={{
+                  lat: Number(data.company.address.latitude),
+                  lng: Number(data.company.address.longitude),
+                }}
               />
-              <div className="flex flex-col gap-1 text-sm text-slate-600">
-                <p className="">{`${data.company.address.street} ${data.company.address.house},`}</p>
-                <p>{`${data.company.address.zipCode} ${data.company.address.city.name}, ${data.company.address.country.name}`}</p>
-              </div>
             </div>
-            <Map
-              center={{
-                lat: Number(data.company.address.latitude),
-                lng: Number(data.company.address.longitude),
-              }}
-            />
-          </div>
+          )}
         </div>
         <VideoContainer source={data.video.split("=")[1]} />
+
         <OfferDetails
           technologies={data.categories}
           trl={data.trl.name}
