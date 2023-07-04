@@ -8,10 +8,7 @@ export interface ProductData {
     id: number;
     name: string;
   };
-  categories: {
-    id: number;
-    name: string;
-  }[];
+  categories: IDNameCommon[];
   implementationEffortText: null | string;
   investmentEffort: string;
   trl: {
@@ -45,8 +42,24 @@ export interface ProductData {
       latitude: string;
     };
   };
-  businessModels: {
-    id: number;
-    name: string;
-  }[];
+  businessModels: IDNameCommon[];
+}
+
+export interface IDNameCommon {
+  id: number;
+  name: string;
+}
+
+export interface OfferDetails {
+  technologies: IDNameCommon[];
+  trl: string;
+  businessModels: IDNameCommon[];
+  costs: string;
+}
+
+export interface Map {
+  center: {
+    lat: number;
+    lng: number;
+  };
 }
