@@ -12,7 +12,7 @@ export default function ProductRootLayout({
 }) {
   return (
     <>
-      <nav className={`flex px-5 h-[7vh] xl:px-60 bg-primary items-center`}>
+      <nav className={`flex px-5 h-[7vh] xl:px-48 bg-primary items-center`}>
         <div className="h-[6vh] w-48 relative">
           <Image
             src={process.env.logo!}
@@ -80,7 +80,7 @@ export default function ProductRootLayout({
           </div>
         </div>
       </nav>
-      <main className="px-3 pt-5 xl:px-60 bg-slate-100">{children}</main>
+      <main className="px-3 pt-5 xl:px-48 bg-slate-100">{children}</main>
     </>
   );
 }
