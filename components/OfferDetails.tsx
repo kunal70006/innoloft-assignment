@@ -53,7 +53,7 @@ const Details: React.FC<{
       <div className="flex gap-2 ml-6 mt-2 flex-wrap">
         {detailsArr.map((t) => (
           <div
-            className="px-3 text-sm py-1 bg-indigo-400 text-indigo-100 rounded-xl"
+            className="px-3 text-sm py-1 bg-primary text-slate-100 rounded-xl"
             key={t.id}
           >
             {t.name}

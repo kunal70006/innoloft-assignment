@@ -12,8 +12,15 @@ export default function ProductRootLayout({
 }) {
   return (
     <>
-      <nav className="flex px-5 h-[7vh] xl:px-60 bg-indigo-600 items-center">
-        <Image src="/logo.svg" alt="Innoloft logo." width={140} height={26} />
+      <nav className={`flex px-5 h-[7vh] xl:px-60 bg-primary items-center`}>
+        <div className="h-[6vh] w-48 relative">
+          <Image
+            src={process.env.logo!}
+            alt="Innoloft logo."
+            fill
+            className="object-contain"
+          />
+        </div>
         <div className="hidden md:flex justify-between flex-1 ml-56 items-center">
           <div className="relative flex items-center w-1/2">
             <input

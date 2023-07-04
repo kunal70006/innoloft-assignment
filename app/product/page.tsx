@@ -21,7 +21,7 @@ const ProductPage = async () => {
             {data.name}
           </p>
         </div>
-        <button className="rounded-md px-3 py-1 bg-indigo-600 w-fit text-white my-5 md:my-0">
+        <button className="rounded-md px-3 py-1 bg-primary w-fit text-white my-5 md:my-0">
           Edit
         </button>
       </div>
@@ -35,7 +35,7 @@ const ProductPage = async () => {
               className="object-contain"
             />
             <div className="absolute flex top-0 left-0">
-              <div className="bg-indigo-600 rounded-ss-md rounded-ee-md z-10 w-10 h-10 flex items-center justify-center">
+              <div className="bg-primary rounded-ss-md rounded-ee-md z-10 w-10 h-10 flex items-center justify-center">
                 <Image src="/badge.svg" alt="badge" height={16} width={16} />
               </div>
               <div className="bg-white px-3 py-2 rounded-ee-md -ml-1 font-semibold">

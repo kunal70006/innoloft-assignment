@@ -10,8 +10,6 @@ const VideoContainer: React.FC<{ source: string }> = ({ source }) => {
         <Youtube
           videoId={source}
           opts={{
-            // height: "400",
-            // width: "800",
             playerVars: { autoplay: 1 },
           }}
           iframeClassName="h-[400px] w-[400px] md:w-[500px] xl:w-[800px]"
